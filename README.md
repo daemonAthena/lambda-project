@@ -12,26 +12,24 @@ There is a series of utility functions which:
 
 ## Classes
 
-Terrain: 
-    Terrain Attributes
-    - *type*
-    - *position*
-    - render
-    - color
-    - penalty
-    - advantage
+### Terrain: 
+Terrain Attributes
+- *type*
+- *position*
+- render
+- color
+- penalty
+- advantage
 
-Unit:
-    Unit Attributes
-    - *color*
-    - *type*
-    - *position*
-    - movement
-    - strength
-    - image
+### Unit
+Unit Attributes
+- *color*
+- *type*
+- *position*
+- movement
+- strength
+- image
 
-    Unit Functions
-    - range
-    - attack_range
-
-## 
+Unit Functions
+- range
+- attack_range
