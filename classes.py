@@ -7,23 +7,33 @@ from math import *
 
 
 def form(point= (0,0)):
-    #returns a rendered point transformed back into an abstract point
-    #named after Plato's world of forms
-    #must not use unless necessary division is harder than multiplying
+    """
+    Converts a rendered point back into an abstract point.
+    Named after Plato's world of forms.
+    Must not use unless necessary, division is harder than multiplying.
+    """
     return (point[0]//TILE_SIZE,point[1]//TILE_SIZE)
 
 def render(position= (0,0)):
-    #this was necessary since a custom Point class won't work for some reason (believe me I tried)
+    """
+    Converts an abstract point to a rendered point.
+    """
     if type(position) == tuple:
         return (position[0]*TILE_SIZE,position[1]*TILE_SIZE)
     elif type(position) == int or type(position) == float:
         return position * TILE_SIZE
 
 def distance(distance1=(0,0),distance2=(0,0)):
+    """
+    Calculates the Euclidean distance between two points.
+    """
     #the distance formula, used to find the distance between two cartesian points
     return sqrt((distance2[0]-distance1[0])**2 + (distance2[1]-distance1[1])**2)
 
 def min_distance(points=set,end=(0,0)):
+    """
+    Finds the point in a set that is closest to a given end point.
+    """
     #very helpful
     minimum = GRID_SIZE
     for p in points:
@@ -33,7 +43,9 @@ def min_distance(points=set,end=(0,0)):
     return minp
 
 def add_point(point=(0,0),s=0,direction='down'):
-    #returns a line of vertices going a particular direction
+    """
+     Adds a point to a given point set in a given direction and distance.
+    """
     point_set = set()
     if direction == 'down':
         for i in range(1,s):
@@ -50,10 +62,10 @@ def add_point(point=(0,0),s=0,direction='down'):
     return point_set
 
 def get_ring(point=(0,0),n=1):
-    #returns a ring distance n away
-    #an n-ring has 8n vertices surrounding the center
-    #take the corner points ex. (-1,-1),(1,1),(-1,1),(1,-1)
-    #add the amount to them
+    """
+    Returns a set of points forming a ring at distance n from the given point.
+    An n-ring has 8n vertices surrounding the center.
+    """
     x = point[0]
     y = point[1]
     corners = [(x+n,y+n),(x-n,y+n),(x+n,y-n),(x-n,y-n)]
@@ -65,7 +77,9 @@ def get_ring(point=(0,0),n=1):
     return ring_set
 
 def create_route(start=(0,0),finish=(0,0)):
-    #takes two points and returns the direct path as a list
+    """
+    Takes two points and returns the direct path as a list.
+    """
     path = [start]
     r = int(distance(start,finish))
     for i in range(1,r):
@@ -120,7 +134,7 @@ class Unit:
             self.image = blue_units[self.type]
 
     def range(self,unit_list,terrain_list):
-        #range is not dictated by terrain for fairies
+        """Computes a unit's movement range. Range is not dictated by terrain for fairies."""
         range_set = set()
         if self.type == 'fairy':
             for position in unit_list:
